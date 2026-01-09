@@ -1,0 +1,210 @@
+/* --- Variables & Reset --- */
+:root {
+    --bg-color: #F3F0E9; /* Le crème de l'image */
+    --accent-color: #545AEF; /* Le bleu vibrant */
+    --text-dark: #1a1a1a;
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    color: var(--accent-color);
+    overflow-x: hidden; /* Évite le scroll horizontal */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Texture (Noise) pour effet Pro --- */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- Header / Navigation --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    position: relative;
+    z-index: 10;
+    max-height: 80px;
+}
+
+.logo img { 
+        
+        height: 70px; width: auto; max-width: 100%; object-fit: contain;
+  }
+
+.logo {
+    display: flex;
+    align-items: center;
+    max-width: 120px; overflow: hidden;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+.btn-contact {
+    border: 2px solid var(--accent-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* --- Main Layout --- */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Les Formes Bleues (SVG) --- */
+.shape-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15vw; /* Largeur adaptable */
+    max-width: 200px;
+    z-index: 1;
+}
+
+.shape-container.left { left: 0; }
+.shape-container.right { right: 0; }
+
+.shape-container svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-color);
+}
+
+/* --- Typographie Centrale --- */
+.hero-content {
+    z-index: 5;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sub-text {
+    position: absolute;
+    left: 18vw; /* Positionnement par rapport aux formes */
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.center-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author-name {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: -10px; /* Colle le nom au titre */
+    color: var(--text-dark);
+    opacity: 0; /* Pour l'animation JS */
+    transform: translateY(20px);
+}
+
+.main-title {
+    font-family: var(--font-display);
+    /* Clamp permet d'avoir une police géante mais qui rétrécit sur mobile */
+    font-size: clamp(4rem, 18vw, 15rem); 
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin: 0;
+    opacity: 0; /* Pour l'animation JS */
+    transform: scale(0.9);
+}
+
+/* --- Indicateur Scroll --- */
+.scroll-indicator {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+}
+
+.arrow {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-3px);}
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .shape-container { width: 10vw; }
+    .sub-text { display: none; } /* On cache le texte vertical sur mobile */
+    header { padding: 1.5rem; }
+    nav ul { display: none; } /* Menu burger à faire si besoin */
+}
