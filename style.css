@@ -38,13 +38,28 @@ body {
 
 /* --- Header / Navigation --- */
 header {
+    position: relative; /* Indispensable pour que le centrage fonctionne */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 3rem;
-    position: relative;
-    z-index: 10;
-    max-height: 80px;
+}
+
+/* Nouveau style pour le nom dans le header */
+.author-name-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* C'est cette ligne qui centre le texte */
+    
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dark);
+    margin: 0;
+    white-space: nowrap;
+    
+    /* On s'assure qu'il est visible tout de suite */
+    opacity: 1; 
 }
 
 .logo img { 
