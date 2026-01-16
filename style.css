@@ -1,10 +1,15 @@
 /* --- Variables & Reset --- */
 :root {
-    --bg-color: #F3F0E9; /* Le crème de l'image */
-    --accent-color: #545AEF; /* Le bleu vibrant */
+    --bg-color: #F3F0E9;
+    --accent-color: #545AEF;
     --text-dark: #1a1a1a;
     --font-display: 'Anton', sans-serif;
     --font-body: 'Manrope', sans-serif;
+}
+
+html {
+    /* ACTIVE LE SCROLL FLUIDE ENTRE LES SECTIONS */
+    scroll-behavior: smooth;
 }
 
 * {
@@ -17,13 +22,13 @@ body {
     background-color: var(--bg-color);
     font-family: var(--font-body);
     color: var(--accent-color);
-    overflow-x: hidden; /* Évite le scroll horizontal */
-    height: 100vh;
+    overflow-x: hidden;
+    /* On enlève le height: 100vh ici pour permettre le scroll vers le bas */
     display: flex;
     flex-direction: column;
 }
 
-/* --- Texture (Noise) pour effet Pro --- */
+/* --- Texture (Noise) --- */
 .noise-overlay {
     position: fixed;
     top: 0;
@@ -38,18 +43,20 @@ body {
 
 /* --- Header / Navigation --- */
 header {
-    position: relative; /* Indispensable pour que le centrage fonctionne */
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 3rem; /* Espace autour du header */
+    z-index: 100;
+    min-height: 120px; /* On force une hauteur minimale au header */
 }
 
-/* Nouveau style pour le nom dans le header */
+/* Centrage du nom dans le header */
 .author-name-header {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* C'est cette ligne qui centre le texte */
-    
+    transform: translateX(-50%);
     font-family: var(--font-body);
     font-weight: 600;
     text-transform: uppercase;
@@ -57,20 +64,24 @@ header {
     color: var(--text-dark);
     margin: 0;
     white-space: nowrap;
-    
-    /* On s'assure qu'il est visible tout de suite */
-    opacity: 1; 
+    z-index: 10;
 }
 
-.logo img { 
-        
-        height: 70px; width: auto; max-width: 100%; object-fit: contain;
-  }
-
+/* LE CONTENEUR DU LOGO */
 .logo {
     display: flex;
     align-items: center;
-    max-width: 120px; overflow: hidden;
+    /* J'enlève toutes les limites ici pour laisser l'image grandir */
+    width: auto;
+    max-width: none; 
+    height: auto;
+}
+
+/* L'IMAGE DU LOGO ELLE-MÊME */
+.logo img { 
+    height: 50px; /* <--- C'EST LA TAILLE DE TON LOGO */
+    width: auto; 
+    object-fit: contain;
 }
 
 nav ul {
@@ -105,15 +116,20 @@ nav a:hover {
     color: white;
 }
 
-/* --- Main Layout --- */
+/* --- Main Layout & Sections --- */
 main {
-    flex-grow: 1;
+    width: 100%;
+    /* On laisse le main s'agrandir selon le contenu */
+}
+
+/* NOUVEAU : Classe générique pour chaque slide (Hero, Projets...) */
+.fullscreen-section {
+    min-height: 90vh; /* Prend presque tout l'écran (moins le header) */
+    position: relative; /* Important pour que les formes bleues restent dedans */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    width: 100%;
-    height: 100%;
+    padding: 2rem 0;
 }
 
 /* --- Les Formes Bleues (SVG) --- */
@@ -121,7 +137,7 @@ main {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 15vw; /* Largeur adaptable */
+    width: 15vw;
     max-width: 200px;
     z-index: 1;
 }
@@ -135,7 +151,7 @@ main {
     fill: var(--accent-color);
 }
 
-/* --- Typographie Centrale --- */
+/* --- Contenu Hero (Première slide) --- */
 .hero-content {
     z-index: 5;
     text-align: center;
@@ -146,47 +162,69 @@ main {
     width: 100%;
 }
 
-.sub-text {
-    position: absolute;
-    left: 18vw; /* Positionnement par rapport aux formes */
-}
-
-.vertical-text {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
 .center-block {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.author-name {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: -10px; /* Colle le nom au titre */
-    color: var(--text-dark);
-    opacity: 0; /* Pour l'animation JS */
-    transform: translateY(20px);
-}
-
 .main-title {
     font-family: var(--font-display);
-    /* Clamp permet d'avoir une police géante mais qui rétrécit sur mobile */
     font-size: clamp(4rem, 18vw, 15rem); 
     line-height: 1;
     text-transform: uppercase;
     color: var(--accent-color);
     margin: 0;
-    opacity: 0; /* Pour l'animation JS */
+    opacity: 0;
     transform: scale(0.9);
+}
+
+/* --- NOUVEAU : Contenu Projets (Deuxième slide) --- */
+.projects-content {
+    z-index: 5;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur pour pas que ce soit trop écarté */
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 4rem; /* Un peu plus petit que le titre principal */
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Le cadre en pointillés "truc vite fait" */
+.project-placeholder {
+    border: 3px dashed var(--accent-color);
+    padding: 4rem 6rem;
+    border-radius: 20px;
+    background: rgba(84, 90, 239, 0.05); /* Bleu très transparent */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.project-placeholder:hover {
+    transform: translateY(-10px); /* Petit effet de saut au survol */
+    background: rgba(84, 90, 239, 0.1);
+}
+
+.project-placeholder h3 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.project-placeholder p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
 }
 
 /* --- Indicateur Scroll --- */
@@ -200,6 +238,7 @@ main {
     gap: 0.5rem;
     opacity: 0;
     animation: fadeIn 1s ease 1s forwards;
+    cursor: pointer; /* Indique qu'on peut cliquer */
 }
 
 .arrow {
@@ -219,7 +258,83 @@ main {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .shape-container { width: 10vw; }
-    .sub-text { display: none; } /* On cache le texte vertical sur mobile */
-    header { padding: 1.5rem; }
-    nav ul { display: none; } /* Menu burger à faire si besoin */
+    header { padding: 1.5rem; flex-direction: column; gap: 1rem;}
+    
+    /* Ajustement du nom sur mobile pour qu'il ne gêne pas */
+    .author-name-header {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+    }
+
+    nav ul { display: none; } /* Menu caché sur mobile pour l'instant */
+    
+    .section-title { font-size: 2.5rem; }
+    .project-placeholder { padding: 2rem; width: 80%; }
+}
+
+/* --- Styles pour la section Compétences --- */
+/* --- SECTION COMPÉTENCES (Grille 2 colonnes x 3 lignes) --- */
+
+.skills-content {
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.skills-grid {
+    display: grid;
+    /* C'est ICI qu'on définit 2 colonnes. 
+       Comme il y a 6 cartes, cela créera automatiquement 3 lignes. */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem; /* Espace entre les cases */
+    width: 100%;
+    max-width: 1000px; /* On limite la largeur pour que ça reste joli */
+    margin-top: 2rem;
+}
+
+.skill-card {
+    /* LE CADRE EN POINTILLÉS (C'est ça qui te manquait peut-être) */
+    border: 2px dashed var(--accent-color);
+    border-radius: 15px;
+    padding: 2rem;
+    background: rgba(84, 90, 239, 0.05); /* Fond bleu très léger */
+    
+    /* Mise en page interne de la carte */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    
+    transition: transform 0.3s ease, background 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: rgba(84, 90, 239, 0.15);
+}
+
+.skill-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.skill-card p {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    /* Sur mobile, on passe à 1 seule colonne pour que ce soit lisible */
+    .skills-grid {
+        grid-template-columns: 1fr; 
+    }
 }
