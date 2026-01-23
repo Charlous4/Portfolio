@@ -29,4 +29,38 @@ document.addEventListener('DOMContentLoaded', () => {
     heroSection.addEventListener('mouseleave', () => {
         title.style.transform = `scale(1) translate(0, 0)`;
     });
+
+    
+});
+
+/* --- GESTION DE LA MODALE CONTACT --- */
+const modal = document.getElementById('contactModal');
+const btnContact = document.querySelector('.btn-contact'); // Ton bouton dans le header
+const closeBtn = document.querySelector('.close-modal'); // La croix
+
+// 1. Ouvrir la modale
+btnContact.addEventListener('click', (e) => {
+    e.preventDefault(); // Empêche le # dans l'URL
+    modal.style.display = 'flex';
+    // Petit délai pour permettre l'animation CSS
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+});
+
+// 2. Fermer la modale
+function closeModal() {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300); // Attend la fin de l'animation
+}
+
+closeBtn.addEventListener('click', closeModal);
+
+// 3. Fermer si on clique en dehors de la boîte
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
+    }
 });
