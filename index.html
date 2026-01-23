@@ -15,14 +15,15 @@
     <div class="noise-overlay"></div>
 
     <header>
-        <div class="logo">
-            <img src="img/logo_portfolio.png" alt="Logo du portfolio">
-        </div>
+        <div class="logo-text">CR.</div>
+        
         <p class="author-name-header">Par <span id="myName">Charles RUBIO</span></p>
+        
         <nav>
             <ul>
                 <li><a href="#projects">Projets</a></li>
                 <li><a href="#skills">Compétences</a></li>
+                <li><a href="#tools">Outils</a></li>
                 <li><a href="#" class="btn-contact">Me contacter</a></li>
             </ul>
         </nav>
@@ -95,31 +96,112 @@
                 
                 <div class="skills-grid">
                     
-                    <div class="skill-card">
-                        <h3>Compétence C1</h3>
-                        <p>Gérer le patrimoine informatique</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Compétence C2</h3>
-                        <p>Description de la compétence</p>
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Gérer le patrimoine</h3>
+                                <p>Recensement, Sauvegardes & Continuité</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>Cas Incendie OVH</li>
+                                    <li>Prise en main de Docker</li>
+                                    <li>Mise en place GLPI</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <h3>Compétence C3</h3>
-                        <p>Description de la compétence</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Compétence C4</h3>
-                        <p>Description de la compétence</p>
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Répondre aux incidents</h3>
+                                <p>Assistance & Ticketing</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>Gestion de parc GLPI</li>
+                                    <li>Apprentissage Office VBA</li>
+                                    <li>Support utilisateur n1</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <h3>Compétence C5</h3>
-                        <p>Description de la compétence</p>
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Présence en ligne</h3>
+                                <p>Référencement & E-réputation</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>Optimisation SEO (Exemple)</li>
+                                    <li>Analyse de trafic Web</li>
+                                    <li><i>(Projets à venir...)</i></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <h3>Compétence C6</h3>
-                        <p>Description de la compétence</p>
+
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Mode Projet</h3>
+                                <p>Planification & Objectifs</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>App de réservation Sport</li>
+                                    <li>Gestion de planning</li>
+                                    <li>Rédaction cahier des charges</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Service Informatique</h3>
+                                <p>Déploiement & Tests</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>Déploiement App Sport</li>
+                                    <li>Tests d'intégration</li>
+                                    <li>Documentation utilisateur</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" onclick="this.classList.toggle('flipped')">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <h3>Dév. Professionnel</h3>
+                                <p>Veille & Auto-formation</p>
+                                <span class="click-info"><i class="bi bi-arrow-repeat"></i> Voir les exemples</span>
+                            </div>
+                            <div class="skill-card-back">
+                                <h3>Réalisations</h3>
+                                <ul>
+                                    <li>Config Git / Symfony / PSQL</li>
+                                    <li>Veille Technologique</li>
+                                    <li>Auto-formation Udemy/OC</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -132,7 +214,75 @@
             </div>
         </section>
 
-    </main>
+        <section id="tools" class="fullscreen-section">
+            <div class="shape-container left">
+                <svg viewBox="0 0 100 400" preserveAspectRatio="none">
+                    <path d="M0,0 H100 Q0,200 100,400 H0 Z" fill="#545AEF"/>
+                </svg>
+            </div>
+
+            <div class="tools-content">
+                <h2 class="section-title">OUTILS UTILISÉS</h2>
+                
+                <div class="tools-grid">
+                    
+                    <div class="tool-card">
+                        <i class="bi bi-git"></i>
+                        <span>Git</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-github"></i>
+                        <span>GitHub</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-layers-half"></i> 
+                        <span>Symfony</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-android2"></i>
+                        <span>Android Studio</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-database"></i>
+                        <span>PostgreSQL</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-code-slash"></i>
+                        <span>VS Code</span>
+                    </div>
+
+                    <div class="tool-card">
+                        <i class="bi bi-database-gear"></i>
+                        <span>Adminer</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="shape-container right">
+                <svg viewBox="0 0 100 400" preserveAspectRatio="none">
+                    <path d="M0,0 H100 V400 H0 Q100,200 0,0 Z" fill="#545AEF"/>
+                </svg>
+            </div>
+        </section>
+
+    </main> 
+    
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/Charlous4" target="_blank" title="Mon GitHub">
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+            <p>&copy; 2026 Charles RUBIO.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
