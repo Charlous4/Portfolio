@@ -242,19 +242,14 @@ main {
 }
 
 .skill-card {
-    border: 2px dashed var(--accent-color);
-    border-radius: 15px;
-    padding: 2rem;
-    background: rgba(84, 90, 239, 0.05);
+   background-color: transparent;
     
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 150px;
+    /* C'EST ICI QUE TU RÈGLES LA TAILLE */
+    /* Essaie de passer de 250px à 300px, 320px ou même 350px */
+    min-height: 320px; 
     
-    transition: transform 0.3s ease, background 0.3s;
+    perspective: 1000px;
+    cursor: pointer;
 }
 
 .skill-card:hover {
@@ -377,12 +372,13 @@ main {
     transform: rotateY(180deg);
 }
 
-/* Style commun aux deux faces */
 .skill-card-front, .skill-card-back {
     position: absolute;
+    top: 0;  /* <-- AJOUT IMPORTANT */
+    left: 0; /* <-- AJOUT IMPORTANT */
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden; /* Cache le dos quand on est de face */
     
     border: 2px dashed var(--accent-color);
@@ -392,12 +388,14 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(84, 90, 239, 0.05);
 }
 
 /* --- FACE AVANT --- */
 .skill-card-front {
+    background: rgba(84, 90, 239, 0.05); /* Le fond léger est ici maintenant */
     color: var(--text-dark);
+    transform: rotateY(0deg); /* <-- AJOUT IMPORTANT pour corriger le bug */
+    z-index: 2; /* S'assure que l'avant est bien au-dessus par défaut */
 }
 
 .skill-card-front h3 {
@@ -417,12 +415,13 @@ main {
     border-radius: 20px;
 }
 
-/* --- FACE ARRIÈRE (Retournée à 180deg par défaut) --- */
+/* --- FACE ARRIÈRE --- */
 .skill-card-back {
-    background: var(--accent-color); /* Fond bleu pour le dos ! */
-    color: white; /* Texte blanc */
+    background: var(--accent-color); /* Fond bleu opaque */
+    color: white; 
     transform: rotateY(180deg);
-    border-style: solid; /* Bordure pleine pour le dos */
+    border-style: solid;
+    z-index: 1; /* L'arrière reste derrière par défaut */
 }
 
 .skill-card-back h3 {
@@ -666,4 +665,146 @@ footer p {
     font-weight: 600;
     font-size: 1rem;
     word-break: break-all; /* Pour éviter que les mails longs dépassent sur mobile */
+}
+
+/* --- BOUTON "VOIR PLUS" (Dos de la carte) --- */
+.btn-see-more {
+    display: inline-block;
+   margin-top: 1.5rem; /* Espace au-dessus du bouton */
+    padding: 0.4rem 1.2rem;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-see-more:hover {
+    background-color: white;
+    color: var(--accent-color); /* Le texte devient bleu au survol */
+    transform: scale(1.05); /* Petit zoom */
+}
+
+/* =========================================
+   STYLES DES SOUS-PAGES (COMPÉTENCES)
+========================================= */
+
+.subpage-body {
+    /* Évite que le contenu soit caché sous un petit écran */
+    display: block; 
+    height: auto;
+    min-height: 100vh;
+}
+
+.subpage-header {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: flex-start; /* Aligne le bouton à gauche */
+    z-index: 100;
+    position: relative;
+    min-height: auto; /* Annule la hauteur de l'accueil */
+}
+
+/* Bouton Retour */
+.btn-retour {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.btn-retour i {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.btn-retour:hover {
+    color: var(--accent-color);
+}
+
+.btn-retour:hover i {
+    transform: translateX(-5px); /* La flèche recule un peu au survol */
+}
+
+/* Contenu Principal de la page Compétence */
+.comp-main {
+    padding: 0 3rem 4rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.comp-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+}
+
+/* Boîte de contenu */
+.comp-content-box {
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid var(--accent-color);
+    border-radius: 20px;
+    padding: 3rem;
+}
+
+.comp-intro h2, .comp-projects h2 {
+    font-family: var(--font-display);
+    color: var(--accent-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.comp-intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 3rem;
+}
+
+/* Style des réalisations */
+.project-detail {
+    background: white;
+    border-left: 5px solid var(--accent-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.project-detail:hover {
+    transform: translateX(10px); /* Petit effet d'avancée */
+}
+
+.project-detail h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.project-detail p {
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Responsive pour les sous-pages */
+@media (max-width: 768px) {
+    .subpage-header { padding: 1.5rem; }
+    .comp-main { padding: 0 1.5rem 3rem 1.5rem; }
+    .comp-content-box { padding: 1.5rem; }
 }
