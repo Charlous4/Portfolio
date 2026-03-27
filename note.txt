@@ -1,0 +1,7 @@
+3eme compétence C1 a faire
+3eme compétence C2 a faire
+Refaire TP Incendie OVH
+Faire une doc GLPI sans docker sur Notion
+Refaire TP Referencement Web SEO
+Faire app mobile
+Revoir les description des exemples
