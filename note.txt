@@ -1,8 +1,6 @@
 3eme exemple C1 a faire
 3eme exemple C2 a faire
 Refaire TP Incendie OVH
-Faire une doc GLPI sans docker sur Notion
 Refaire TP Referencement Web SEO
-Faire app mobile
 Revoir les description des exemples
 Ne pas oublié de mettre a jour les exemples dans le verso des cartes une fois fini
